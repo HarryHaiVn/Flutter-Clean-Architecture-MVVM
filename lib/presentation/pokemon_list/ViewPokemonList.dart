@@ -1,15 +1,16 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/model/Pokemon.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/widget/mp_circle_avatar.dart';
+import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_detail/ViewPokemonDetail.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewModelPokemonList.dart';
-import 'package:connectivity/connectivity.dart';
 
 class ViewPokemonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Flutter Example"),
+          title: Text("Flutter Go"),
         ),
         body: buildPokemonContent());
   }
@@ -100,27 +101,34 @@ class PokemonListViewState extends State<PokemonListView>
     final List<MaterialColor> _colors = Colors.primaries;
     return Flexible(
       child: ListView.builder(
-          padding: EdgeInsets.all(10),
-          itemCount: pokemonList.length,
-          itemBuilder: (BuildContext context, int index) {
-            var item = pokemonList[index];
-            final MaterialColor color = _colors[index % _colors.length];
-            return new ListTile(
-              dense: false,
-              leading: new Hero(
-                child: avatar(item.url, color),
-                tag: item.name,
-              ),
-              title: new Text(item.name),
-              subtitle: new Text(
-                "Weight: ${item.weight} Height: ${item.height} ",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .caption,
-              ),
-            );
-          }),
+        padding: EdgeInsets.all(10),
+        itemCount: pokemonList.length,
+        itemBuilder: (BuildContext context, int index) {
+          var item = pokemonList[index];
+          final MaterialColor color = _colors[index % _colors.length];
+          return new ListTile(
+            dense: false,
+            leading: new Hero(
+              child: avatar(item.url, color),
+              tag: item.name,
+            ),
+            title: new Text(item.name),
+            subtitle: new Text(
+              "Weight: ${item.weight} Height: ${item.height} ",
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .caption,
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                        builder: (context) => new ViewPokemonDetail()));
+            },
+          );
+        },
+      ),
     );
   }
 
@@ -150,3 +158,4 @@ class PokemonListViewState extends State<PokemonListView>
     setState(() {});
   }
 }
+
