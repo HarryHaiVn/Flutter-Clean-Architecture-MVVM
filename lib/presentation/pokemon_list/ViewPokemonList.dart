@@ -113,7 +113,7 @@ class PokemonListViewState extends State<PokemonListView>
               ),
               title: new Text(item.name),
               subtitle: new Text(
-                "By ${item.name}",
+                "Weight: ${item.weight} Height: ${item.height} ",
                 style: Theme
                     .of(context)
                     .textTheme

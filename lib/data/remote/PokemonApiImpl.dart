@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter_cleanarchitecture_mvvm/data/model/Pokemon.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/remote/PokemonApi.dart';
 import 'package:http/http.dart';
-import 'dart:convert';
 
 class PokemonApiImpl implements PokemonApi {
   @override
@@ -16,6 +17,8 @@ class PokemonApiImpl implements PokemonApi {
           Pokemon pokemon = Pokemon();
           pokemon.name = list.asMap()[idx]['name'];
           pokemon.url = list.asMap()[idx]['img'];
+          pokemon.weight = list.asMap()[idx]['weight'];
+          pokemon.height = list.asMap()[idx]['height'];
           listPokemon.add(pokemon);
         }
         return listPokemon;
