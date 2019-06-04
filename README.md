@@ -24,15 +24,15 @@ There are 3 main modules to help separate the code. They are Data, Domain, and A
  - This is where the business logic takes place.
  - Returns data downstream.
  - Single use.
- - Lives in Domain (No Android dependencies. Very testable)
+ - Lives in Domain (No Android dependencies. Very testable).
 #ViewModel
  - Organizes data and holds View state.
  - Talks to use cases.
- - Does not know about the View
+ - Does not know about the View.
 #View
  - Updates UI
  - Knows about the ViewModel
- - Observes changes to ViewModel
+ - Observes changes to ViewModel.
 #Router
  -I leave this open ended to suit each projects needs. The main point here is that it is important to consolidate navigation logic to one place. This helps with maintenance and unit testing.
 
