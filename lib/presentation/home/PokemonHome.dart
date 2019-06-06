@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/camera/camera_screen.dart';
+import 'package:flutter_cleanarchitecture_mvvm/main.dart';
+import 'package:flutter_cleanarchitecture_mvvm/presentation/camera/CameraScreen.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/photo/ViewPhotoStaggered.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPokemonGrid.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPokemonList.dart';
@@ -20,7 +21,7 @@ class _PokemonHomeState extends State<PokemonHome>
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(vsync: this, initialIndex: 1, length: 4);
+    _tabController = new TabController(vsync: this, initialIndex: 0, length: 3);
   }
 
   @override
@@ -33,7 +34,6 @@ class _PokemonHomeState extends State<PokemonHome>
           controller: _tabController,
           indicatorColor: Colors.white,
           tabs: <Widget>[
-            new Tab(icon: new Icon(Icons.camera_alt)),
             new Tab(text: "LIST"),
             new Tab(
               text: "GRID",
@@ -44,9 +44,9 @@ class _PokemonHomeState extends State<PokemonHome>
           ],
         ),
         actions: <Widget>[
-          new Icon(Icons.search),
-          new Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          new IconButton(
+              icon: new Icon(Icons.camera_alt, color: Colors.white,),
+              onPressed: () => _onClickCamera(context)
           ),
           new Icon(Icons.more_vert)
         ],
@@ -54,7 +54,6 @@ class _PokemonHomeState extends State<PokemonHome>
       body: new TabBarView(
         controller: _tabController,
         children: <Widget>[
-          new CameraScreen(widget.cameras),
           new ViewPokemonList(),
           new ViewPokemonGrid(),
           new ViewPhotoStaggered(),
@@ -80,4 +79,11 @@ class _PokemonHomeState extends State<PokemonHome>
       ),
     );
   }
+}
+
+_onClickCamera(BuildContext context) {
+  print("OnClick Camera!!");
+  Navigator.push(context,
+      new MaterialPageRoute(
+          builder: (context) => new CameraScreen(cameras)));
 }

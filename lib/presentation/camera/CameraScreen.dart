@@ -37,7 +37,7 @@ class CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     if (!controller.value.isInitialized) {
-      return new Container();
+      return new Container(child: Center(child: CircularProgressIndicator()),);
     }
     return new AspectRatio(
       aspectRatio: controller.value.aspectRatio,
