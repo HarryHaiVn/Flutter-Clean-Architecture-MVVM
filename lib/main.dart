@@ -6,6 +6,7 @@ import 'presentation/home/PokemonHome.dart';
 List<CameraDescription> cameras;
 
 Future<Null> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
   runApp(new MyApp());
 }

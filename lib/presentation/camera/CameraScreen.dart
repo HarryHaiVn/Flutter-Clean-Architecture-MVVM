@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -23,12 +24,11 @@ class CameraScreenState extends State<CameraScreen> {
   void initState() {
     super.initState();
     controller =
-    new CameraController(widget.cameras[0], ResolutionPreset.medium);
+        new CameraController(widget.cameras[0], ResolutionPreset.medium);
     controller.initialize().then((_) {
-      if (!mounted) {
-        return;
+      if (mounted) {
+        setState(() {});
       }
-      setState(() {});
     });
   }
 
