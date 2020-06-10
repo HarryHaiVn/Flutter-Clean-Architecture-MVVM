@@ -4,6 +4,7 @@ import 'package:flutter_cleanarchitecture_mvvm/presentation/camera/CameraScreen.
 import 'package:flutter_cleanarchitecture_mvvm/presentation/photo/ViewPhotoStaggered.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPokemonGrid.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPokemonList.dart';
+import 'package:flutter_cleanarchitecture_mvvm/utils/AppLocalizations.dart';
 
 class PokemonHome extends StatefulWidget {
   var cameras;
@@ -28,7 +29,7 @@ class _PokemonHomeState extends State<PokemonHome>
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Flutter Go"),
+        title: new Text(AppLocalizations.of(context).translate('name_app')),
         elevation: 0.7,
         bottom: new TabBar(
           controller: _tabController,
@@ -45,9 +46,11 @@ class _PokemonHomeState extends State<PokemonHome>
         ),
         actions: <Widget>[
           new IconButton(
-              icon: new Icon(Icons.camera_alt, color: Colors.white,),
-              onPressed: () => _onClickCamera(context)
-          ),
+              icon: new Icon(
+                Icons.camera_alt,
+                color: Colors.white,
+              ),
+              onPressed: () => _onClickCamera(context)),
           new Icon(Icons.more_vert)
         ],
       ),
@@ -84,6 +87,5 @@ class _PokemonHomeState extends State<PokemonHome>
 _onClickCamera(BuildContext context) {
   print("OnClick Camera!!");
   Navigator.push(context,
-      new MaterialPageRoute(
-          builder: (context) => new CameraScreen(cameras)));
+      new MaterialPageRoute(builder: (context) => new CameraScreen(cameras)));
 }

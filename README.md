@@ -35,4 +35,5 @@ There are 3 main modules to help separate the code. They are Data, Domain, and A
  - Observes changes to ViewModel.
 # Router
  - I leave this open ended to suit each projects needs. The main point here is that it is important to consolidate navigation logic to one place. This helps with maintenance and unit testing.
-
+# New Feature
+ - Multi Language
